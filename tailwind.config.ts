@@ -61,7 +61,18 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+        feedoria: {
+          purple: {
+            light: '#9b87f5',
+            DEFAULT: '#6843e6',
+            dark: '#4728b0'
+          },
+          red: {
+            DEFAULT: '#e85048',
+            dark: '#c93d35'
+          }
+        }
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
