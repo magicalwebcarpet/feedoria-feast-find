@@ -9,11 +9,11 @@ import MapView from '@/components/shared/MapView';
 import { meals, categories } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { MapPin } from 'lucide-react';
+import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 
 const DeliveryPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
-  const [showMap, setShowMap] = useState(false);
   const [filteredMeals, setFilteredMeals] = useState(meals);
 
   useEffect(() => {
@@ -40,53 +40,66 @@ const DeliveryPage = () => {
   const mapLocations = meals.map(meal => ({
     id: meal.id,
     name: meal.title,
-    lat: 37.7749 + (Math.random() * 0.05 - 0.025), // Random coords for demo
+    lat: 37.7749 + (Math.random() * 0.05 - 0.025),
     lng: -122.4194 + (Math.random() * 0.05 - 0.025),
     type: 'chef' as const
   }));
 
   return (
-    <MainLayout>
+    <MainLayout
+      fullscreenContent={
+        <MapView
+          locations={mapLocations}
+          initialViewState={{
+            latitude: 37.7749,
+            longitude: -122.4194,
+            zoom: 13
+          }}
+        />
+      }
+    >
       <div className="py-6">
         <div className="flex justify-center mb-6">
           <Logo size="md" />
         </div>
         
-        <div className="flex items-center space-x-2 mb-6">
-          <SearchInput 
-            placeholder="Search for meals, chefs..." 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="flex-grow"
-          />
-          <Button 
-            variant={showMap ? "default" : "outline"} 
-            size="icon"
-            onClick={() => setShowMap(!showMap)}
-            className={showMap ? "bg-feedoria-purple hover:bg-feedoria-purple-dark" : ""}
-          >
-            <MapPin className="h-5 w-5" />
-          </Button>
-        </div>
+        <Drawer>
+          <DrawerTrigger asChild>
+            <div className="flex items-center space-x-2 mb-6">
+              <SearchInput 
+                placeholder="Search for meals, chefs..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="flex-grow"
+              />
+              <Button 
+                variant="outline"
+                size="icon"
+                className="bg-white hover:bg-gray-50"
+              >
+                <MapPin className="h-5 w-5" />
+              </Button>
+            </div>
+          </DrawerTrigger>
+          <DrawerContent className="h-[85vh]">
+            <div className="p-4 h-full overflow-auto">
+              <MapView
+                locations={mapLocations}
+                initialViewState={{
+                  latitude: 37.7749,
+                  longitude: -122.4194,
+                  zoom: 13
+                }}
+              />
+            </div>
+          </DrawerContent>
+        </Drawer>
         
         <CategoryFilter
           categories={categories.meals}
           activeCategory={activeCategory}
           onSelectCategory={setActiveCategory}
         />
-        
-        {showMap && (
-          <div className="mb-6 fade-in">
-            <MapView 
-              locations={mapLocations}
-              initialViewState={{
-                latitude: 37.7749,
-                longitude: -122.4194,
-                zoom: 13
-              }}
-            />
-          </div>
-        )}
         
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {filteredMeals.map((meal, index) => (
