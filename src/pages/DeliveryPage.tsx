@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import MainLayout from '@/components/layout/MainLayout';
 import Logo from '@/components/shared/Logo';
@@ -9,7 +8,7 @@ import MapView from '@/components/shared/MapView';
 import { meals, categories } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { MapPin } from 'lucide-react';
-import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const DeliveryPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -63,8 +62,8 @@ const DeliveryPage = () => {
           <Logo size="md" />
         </div>
         
-        <Drawer>
-          <DrawerTrigger asChild>
+        <Sheet>
+          <SheetTrigger asChild>
             <div className="flex items-center space-x-2 mb-6">
               <SearchInput 
                 placeholder="Search for meals, chefs..." 
@@ -75,25 +74,23 @@ const DeliveryPage = () => {
               <Button 
                 variant="outline"
                 size="icon"
-                className="bg-white hover:bg-gray-50"
+                className="bg-white/80 backdrop-blur-sm hover:bg-white"
               >
                 <MapPin className="h-5 w-5" />
               </Button>
             </div>
-          </DrawerTrigger>
-          <DrawerContent className="h-[85vh]">
-            <div className="p-4 h-full overflow-auto">
-              <MapView
-                locations={mapLocations}
-                initialViewState={{
-                  latitude: 37.7749,
-                  longitude: -122.4194,
-                  zoom: 13
-                }}
-              />
-            </div>
-          </DrawerContent>
-        </Drawer>
+          </SheetTrigger>
+          <SheetContent side="bottom" className="h-[85vh] p-0">
+            <MapView
+              locations={mapLocations}
+              initialViewState={{
+                latitude: 37.7749,
+                longitude: -122.4194,
+                zoom: 13
+              }}
+            />
+          </SheetContent>
+        </Sheet>
         
         <CategoryFilter
           categories={categories.meals}
