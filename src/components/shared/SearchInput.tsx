@@ -8,13 +8,15 @@ interface SearchInputProps {
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
+  onClick?: () => void;  // Added onClick property
 }
 
 const SearchInput = ({
   placeholder = "Search...",
   value,
   onChange,
-  className
+  className,
+  onClick
 }: SearchInputProps) => {
   return (
     <div className={`relative ${className}`}>
@@ -24,6 +26,7 @@ const SearchInput = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        onClick={onClick}  // Pass onClick to the Input component
         className="pl-10 bg-gray-100 border-none focus-visible:ring-feedoria-purple"
       />
     </div>
