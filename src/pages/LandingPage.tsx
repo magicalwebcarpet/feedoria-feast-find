@@ -1,14 +1,35 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Search, ChefHat, Calendar, Store } from 'lucide-react';
+import { Search, ChefHat, Calendar, Store, MapPin } from 'lucide-react';
 import MainLayout from '@/components/layout/MainLayout';
 import SearchInput from '@/components/shared/SearchInput';
 import { categories } from '@/lib/data';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 const LandingPage = () => {
   const navigate = useNavigate();
+  const [selectedCity, setSelectedCity] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+
+  const cities = [
+    "London", 
+    "Manchester", 
+    "Birmingham", 
+    "Leeds", 
+    "Glasgow", 
+    "Edinburgh", 
+    "Liverpool", 
+    "Bristol", 
+    "Sheffield", 
+    "Newcastle"
+  ];
+
+  const handleCitySelect = (city: string) => {
+    setSelectedCity(city);
+    setIsOpen(false);
+  };
 
   return (
     <MainLayout>
@@ -26,11 +47,33 @@ const LandingPage = () => {
             {/* Search Bar */}
             <div className="max-w-xl mx-auto p-4">
               <div className="flex gap-2">
-                <SearchInput
-                  placeholder="Enter your location..."
-                  className="flex-grow"
-                  onChange={(e) => console.log(e.target.value)}
-                />
+                <Popover open={isOpen} onOpenChange={setIsOpen}>
+                  <PopoverTrigger asChild>
+                    <div className="flex-grow relative">
+                      <SearchInput
+                        placeholder={selectedCity || "Enter your location..."}
+                        className="flex-grow pr-10"
+                        value={selectedCity}
+                        onChange={() => {}}
+                        onClick={() => setIsOpen(true)}
+                      />
+                      <MapPin className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5" />
+                    </div>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-full p-0 max-h-[300px] overflow-y-auto">
+                    <div className="rounded-md border bg-white shadow-md">
+                      {cities.map((city) => (
+                        <button
+                          key={city}
+                          className="w-full text-left px-4 py-2 hover:bg-gray-100 transition-colors"
+                          onClick={() => handleCitySelect(city)}
+                        >
+                          {city}
+                        </button>
+                      ))}
+                    </div>
+                  </PopoverContent>
+                </Popover>
                 <Button 
                   className="bg-feedoria-purple hover:bg-feedoria-purple-dark"
                   onClick={() => navigate('/delivery')}
