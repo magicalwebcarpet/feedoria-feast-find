@@ -1,7 +1,6 @@
-
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Home, CalendarDays, Video, ShoppingCart, User } from "lucide-react";
+import { Home, CalendarDays, Tongue, ShoppingCart, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const BottomTabs = () => {
@@ -24,7 +23,7 @@ const BottomTabs = () => {
     {
       name: "Drool",
       href: "/discover",
-      icon: Video,
+      icon: Tongue,
       active: location.pathname === "/discover"
     },
     {
