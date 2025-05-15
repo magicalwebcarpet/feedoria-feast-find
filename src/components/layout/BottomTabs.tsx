@@ -1,7 +1,7 @@
 
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Home, CalendarDays, Sparkles, ShoppingCart, User } from "lucide-react";
+import { CookingPot, CalendarDays, Sparkles, ShoppingCart, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const BottomTabs = () => {
@@ -12,7 +12,7 @@ const BottomTabs = () => {
     {
       name: "Delivery",
       href: "/",
-      icon: Home,
+      icon: CookingPot,
       active: location.pathname === "/"
     },
     {
@@ -22,7 +22,7 @@ const BottomTabs = () => {
       active: location.pathname === "/booking"
     },
     {
-      name: "Drool",
+      name: "Discover",
       href: "/discover",
       icon: Sparkles,
       active: location.pathname === "/discover"

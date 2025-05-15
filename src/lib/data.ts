@@ -1,4 +1,3 @@
-
 // Mock data for the application
 
 export const meals = [
@@ -192,7 +191,7 @@ export const products = [
   }
 ];
 
-export const drools = [
+export const discovers = [
   {
     id: "1",
     username: "foodie_lover",
@@ -200,7 +199,7 @@ export const drools = [
     content: "https://assets.mixkit.co/videos/preview/mixkit-making-a-cake-with-a-mixer-22020-large.mp4",
     likes: 1243,
     comments: 58,
-    description: "Homemade chocolate cake recipe that will make your mouth water! Double chocolate with a hint of espresso. #drool #feedoria #dessert"
+    description: "Homemade chocolate cake recipe that will make your mouth water! Double chocolate with a hint of espresso. #discover #feedoria #dessert"
   },
   {
     id: "2",

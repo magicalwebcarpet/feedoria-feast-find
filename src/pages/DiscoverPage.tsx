@@ -1,10 +1,10 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import DroolCard from '@/components/shared/DroolCard';
+import DiscoverCard from '@/components/shared/DiscoverCard';
 import { ArrowLeft, ChevronUp, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { drools } from '@/lib/data';
+import { discovers } from '@/lib/data';
 
 const DiscoverPage = () => {
   const navigate = useNavigate();
@@ -13,15 +13,15 @@ const DiscoverPage = () => {
   
   const handleNext = () => {
     setDirection(1);
-    setCurrentIndex(prev => (prev + 1) % drools.length);
+    setCurrentIndex(prev => (prev + 1) % discovers.length);
   };
   
   const handlePrev = () => {
     setDirection(-1);
-    setCurrentIndex(prev => (prev - 1 + drools.length) % drools.length);
+    setCurrentIndex(prev => (prev - 1 + discovers.length) % discovers.length);
   };
   
-  const currentDrool = drools[currentIndex];
+  const currentDiscover = discovers[currentIndex];
 
   const variants = {
     enter: (direction: number) => ({
@@ -81,18 +81,18 @@ const DiscoverPage = () => {
           }
         }}
       >
-        <DroolCard
-          id={currentDrool.id}
-          username={currentDrool.username}
-          userAvatar={currentDrool.userAvatar}
-          content={currentDrool.content}
-          likes={currentDrool.likes}
-          comments={currentDrool.comments}
-          description={currentDrool.description}
+        <DiscoverCard
+          id={currentDiscover.id}
+          username={currentDiscover.username}
+          userAvatar={currentDiscover.userAvatar}
+          content={currentDiscover.content}
+          likes={currentDiscover.likes}
+          comments={currentDiscover.comments}
+          description={currentDiscover.description}
         />
       </motion.div>
       
-      {drools.length > 1 && (
+      {discovers.length > 1 && (
         <>
           <motion.button 
             whileTap={{ scale: 0.9 }}
@@ -114,7 +114,7 @@ const DiscoverPage = () => {
       
       <div className="absolute top-4 left-0 right-0 z-10 flex justify-center">
         <div className="bg-black/30 rounded-full px-4 py-1 flex items-center space-x-1">
-          {drools.map((_, idx) => (
+          {discovers.map((_, idx) => (
             <div 
               key={idx} 
               className={`h-2 w-2 rounded-full ${idx === currentIndex ? 'bg-feedoria-red' : 'bg-white/50'}`}

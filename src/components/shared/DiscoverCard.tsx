@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Heart, MessageCircle, Share } from 'lucide-react';
 
-interface DroolCardProps {
+interface DiscoverCardProps {
   id: string;
   username: string;
   userAvatar: string;
@@ -13,14 +13,14 @@ interface DroolCardProps {
   description: string;
 }
 
-const DroolCard = ({ 
+const DiscoverCard = ({ 
   username, 
   userAvatar, 
   content, 
   likes, 
   comments,
   description 
-}: DroolCardProps) => {
+}: DiscoverCardProps) => {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(likes);
 
@@ -87,14 +87,14 @@ const DroolCard = ({
         <p className="text-white text-sm line-clamp-2">{description}</p>
       </div>
       
-      {/* Drool Banner */}
+      {/* Discover Banner */}
       <div className="absolute top-4 left-4">
         <div className="bg-gradient-to-r from-feedoria-purple to-feedoria-red px-3 py-1 rounded-full">
-          <span className="text-white font-bold text-sm">Drool</span>
+          <span className="text-white font-bold text-sm">Discover</span>
         </div>
       </div>
     </div>
   );
 };
 
-export default DroolCard;
+export default DiscoverCard;
