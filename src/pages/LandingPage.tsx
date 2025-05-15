@@ -6,29 +6,60 @@ import { Search, ChefHat, Calendar, Store, MapPin } from 'lucide-react';
 import MainLayout from '@/components/layout/MainLayout';
 import SearchInput from '@/components/shared/SearchInput';
 import { categories } from '@/lib/data';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { 
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+
+// Country data with cities
+const countryData = [
+  {
+    country: "Morocco",
+    flag: "🇲🇦",
+    cities: ["Casablanca", "Marrakech", "Rabat", "Fez", "Tangier"]
+  },
+  {
+    country: "Tunisia",
+    flag: "🇹🇳",
+    cities: ["Tunis", "Sfax", "Sousse", "Kairouan", "Bizerte"]
+  },
+  {
+    country: "Algeria",
+    flag: "🇩🇿",
+    cities: ["Algiers", "Oran", "Constantine", "Annaba", "Batna"]
+  },
+  {
+    country: "France",
+    flag: "🇫🇷",
+    cities: ["Paris", "Lyon", "Marseille", "Bordeaux", "Nice"]
+  },
+  {
+    country: "Italy",
+    flag: "🇮🇹", 
+    cities: ["Rome", "Milan", "Venice", "Florence", "Naples"]
+  },
+  {
+    country: "Spain",
+    flag: "🇪🇸",
+    cities: ["Madrid", "Barcelona", "Valencia", "Seville", "Malaga"]
+  },
+  {
+    country: "Canada",
+    flag: "🇨🇦",
+    cities: ["Toronto", "Montreal", "Vancouver", "Calgary", "Ottawa"]
+  }
+];
 
 const LandingPage = () => {
   const navigate = useNavigate();
   const [selectedCity, setSelectedCity] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
-
-  const cities = [
-    "London", 
-    "Manchester", 
-    "Birmingham", 
-    "Leeds", 
-    "Glasgow", 
-    "Edinburgh", 
-    "Liverpool", 
-    "Bristol", 
-    "Sheffield", 
-    "Newcastle"
-  ];
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
 
   const handleCitySelect = (city: string) => {
     setSelectedCity(city);
-    setIsOpen(false);
+    setIsDialogOpen(false);
   };
 
   return (
@@ -47,33 +78,73 @@ const LandingPage = () => {
             {/* Search Bar */}
             <div className="max-w-xl mx-auto p-4">
               <div className="flex gap-2">
-                <Popover open={isOpen} onOpenChange={setIsOpen}>
-                  <PopoverTrigger asChild>
+                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                  <DialogTrigger asChild>
                     <div className="flex-grow relative">
                       <SearchInput
                         placeholder={selectedCity || "Enter your location..."}
                         className="flex-grow pr-10"
                         value={selectedCity}
                         onChange={() => {}}
-                        onClick={() => setIsOpen(true)}
+                        onClick={() => setIsDialogOpen(true)}
                       />
                       <MapPin className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5" />
                     </div>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-full p-0 max-h-[300px] overflow-y-auto">
-                    <div className="rounded-md border bg-white shadow-md">
-                      {cities.map((city) => (
-                        <button
-                          key={city}
-                          className="w-full text-left px-4 py-2 hover:bg-gray-100 transition-colors"
-                          onClick={() => handleCitySelect(city)}
-                        >
-                          {city}
-                        </button>
-                      ))}
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-3xl p-0 overflow-hidden">
+                    <div className="p-6">
+                      <h2 className="text-2xl font-bold mb-4">Select Your Location</h2>
+                      <div className="flex h-[400px] overflow-hidden rounded-lg border">
+                        {/* Countries Column */}
+                        <div className="w-1/3 border-r overflow-y-auto bg-gray-50">
+                          <div className="sticky top-0 bg-gray-100 p-2 font-semibold border-b">
+                            Countries
+                          </div>
+                          <div className="divide-y">
+                            {countryData.map((item) => (
+                              <button
+                                key={item.country}
+                                onClick={() => setSelectedCountry(item.country)}
+                                className={`w-full text-left p-3 flex items-center gap-2 hover:bg-gray-100 transition-colors ${
+                                  selectedCountry === item.country ? 'bg-feedoria-purple/10 font-medium' : ''
+                                }`}
+                              >
+                                <span className="text-xl">{item.flag}</span>
+                                <span>{item.country}</span>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                        
+                        {/* Cities Column */}
+                        <div className="w-2/3 overflow-y-auto">
+                          <div className="sticky top-0 bg-gray-100 p-2 font-semibold border-b">
+                            Cities
+                          </div>
+                          <div className="p-4">
+                            {selectedCountry ? (
+                              <div className="grid grid-cols-2 gap-2">
+                                {countryData.find(item => item.country === selectedCountry)?.cities.map(city => (
+                                  <button
+                                    key={city}
+                                    onClick={() => handleCitySelect(city)}
+                                    className="p-2 text-left hover:bg-feedoria-purple/10 rounded-md transition-colors"
+                                  >
+                                    {city}
+                                  </button>
+                                ))}
+                              </div>
+                            ) : (
+                              <div className="h-full flex items-center justify-center text-gray-400">
+                                Select a country to see available cities
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </PopoverContent>
-                </Popover>
+                  </DialogContent>
+                </Dialog>
                 <Button 
                   className="bg-feedoria-purple hover:bg-feedoria-purple-dark"
                   onClick={() => navigate('/delivery')}
