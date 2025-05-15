@@ -9,17 +9,29 @@ import { meals, categories } from '@/lib/data';
 import { MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
+// Enhance meals with multiple images and chef avatars
+const enhancedMeals = meals.map(meal => ({
+  ...meal,
+  images: [
+    meal.image,
+    // Generate additional images for each meal by adding query parameters to make URLs unique
+    `${meal.image}?v=2`,
+    `${meal.image}?v=3`
+  ],
+  chefAvatar: `https://i.pravatar.cc/150?u=${meal.chef.replace(/\s/g, '')}`
+}));
+
 const DeliveryPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
-  const [filteredMeals, setFilteredMeals] = useState(meals);
+  const [filteredMeals, setFilteredMeals] = useState(enhancedMeals);
 
   useEffect(() => {
     filterMeals();
   }, [searchQuery, activeCategory]);
 
   const filterMeals = () => {
-    let filtered = [...meals];
+    let filtered = [...enhancedMeals];
     
     if (searchQuery) {
       filtered = filtered.filter(meal => 
@@ -69,9 +81,11 @@ const DeliveryPage = () => {
                 id={meal.id}
                 title={meal.title}
                 chef={meal.chef}
+                chefAvatar={meal.chefAvatar}
                 price={meal.price}
                 rating={meal.rating}
                 image={meal.image}
+                images={meal.images}
                 distance={meal.distance}
                 time={meal.time}
                 onClick={() => console.log(`Meal ${meal.id} clicked`)}
