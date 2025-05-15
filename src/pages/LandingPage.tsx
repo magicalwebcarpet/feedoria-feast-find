@@ -62,6 +62,14 @@ const LandingPage = () => {
     setIsDialogOpen(false);
   };
 
+  const handleFindFood = () => {
+    navigate('/delivery');
+  };
+
+  const handleCategoryClick = () => {
+    navigate('/delivery');
+  };
+
   return (
     <MainLayout>
       <div className="min-h-screen">
@@ -147,7 +155,7 @@ const LandingPage = () => {
                 </Dialog>
                 <Button 
                   className="bg-feedoria-purple hover:bg-feedoria-purple-dark"
-                  onClick={() => navigate('/delivery')}
+                  onClick={handleFindFood}
                 >
                   <Search className="w-4 h-4 mr-2" />
                   Find Food
@@ -198,7 +206,7 @@ const LandingPage = () => {
             {categories.meals.slice(1, 9).map((category) => (
               <button
                 key={category}
-                onClick={() => navigate('/delivery')}
+                onClick={handleCategoryClick}
                 className="group relative aspect-square overflow-hidden rounded-xl hover:scale-105 transition-transform"
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0 z-10" />

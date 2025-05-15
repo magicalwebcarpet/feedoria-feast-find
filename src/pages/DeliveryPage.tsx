@@ -1,14 +1,13 @@
+
 import React, { useState, useEffect } from 'react';
 import MainLayout from '@/components/layout/MainLayout';
 import Logo from '@/components/shared/Logo';
 import SearchInput from '@/components/shared/SearchInput';
 import MealCard from '@/components/shared/MealCard';
 import CategoryFilter from '@/components/shared/CategoryFilter';
-import MapView from '@/components/shared/MapView';
 import { meals, categories } from '@/lib/data';
-import { Button } from '@/components/ui/button';
 import { MapPin } from 'lucide-react';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Button } from '@/components/ui/button';
 
 const DeliveryPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -36,61 +35,24 @@ const DeliveryPage = () => {
     setFilteredMeals(filtered);
   };
 
-  const mapLocations = meals.map(meal => ({
-    id: meal.id,
-    name: meal.title,
-    lat: 37.7749 + (Math.random() * 0.05 - 0.025),
-    lng: -122.4194 + (Math.random() * 0.05 - 0.025),
-    type: 'chef' as const
-  }));
-
   return (
-    <MainLayout
-      fullscreenContent={
-        <MapView
-          locations={mapLocations}
-          initialViewState={{
-            latitude: 37.7749,
-            longitude: -122.4194,
-            zoom: 13
-          }}
-        />
-      }
-    >
-      <div className="py-6">
-        <div className="flex justify-center mb-6">
+    <MainLayout>
+      <div className="py-6 px-4">
+        <div className="flex justify-between items-center mb-6">
           <Logo size="md" />
+          <Button variant="outline" size="icon">
+            <MapPin className="h-5 w-5" />
+          </Button>
         </div>
         
-        <Sheet>
-          <SheetTrigger asChild>
-            <div className="flex items-center space-x-2 mb-6">
-              <SearchInput 
-                placeholder="Search for meals, chefs..." 
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="flex-grow"
-              />
-              <Button 
-                variant="outline"
-                size="icon"
-                className="bg-white/80 backdrop-blur-sm hover:bg-white"
-              >
-                <MapPin className="h-5 w-5" />
-              </Button>
-            </div>
-          </SheetTrigger>
-          <SheetContent side="bottom" className="h-[85vh] p-0">
-            <MapView
-              locations={mapLocations}
-              initialViewState={{
-                latitude: 37.7749,
-                longitude: -122.4194,
-                zoom: 13
-              }}
-            />
-          </SheetContent>
-        </Sheet>
+        <div className="mb-6">
+          <SearchInput 
+            placeholder="Search for meals, chefs..." 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full"
+          />
+        </div>
         
         <CategoryFilter
           categories={categories.meals}
@@ -98,9 +60,9 @@ const DeliveryPage = () => {
           onSelectCategory={setActiveCategory}
         />
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {filteredMeals.map((meal, index) => (
-            <div key={meal.id} className={`slide-in`} style={{ animationDelay: `${index * 0.1}s` }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+          {filteredMeals.map((meal) => (
+            <div key={meal.id} className="animate-fadeIn">
               <MealCard
                 id={meal.id}
                 title={meal.title}
