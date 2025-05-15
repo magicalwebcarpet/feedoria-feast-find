@@ -28,7 +28,7 @@ const MealCard = ({
   return (
     <Card 
       onClick={onClick} 
-      className="overflow-hidden hover-scale cursor-pointer border-none shadow-md"
+      className="overflow-hidden hover-scale cursor-pointer border-none shadow-md h-full"
     >
       <CardContent className="p-0">
         <div className="relative aspect-[4/3]">
@@ -38,20 +38,20 @@ const MealCard = ({
             className="h-full w-full object-cover rounded-t-lg"
           />
           {distance && time && (
-            <div className="absolute bottom-2 left-2 bg-white rounded-full px-2 py-1 text-xs font-medium flex items-center">
+            <div className="absolute bottom-3 left-3 bg-white rounded-full px-3 py-1.5 text-xs font-medium flex items-center shadow-sm">
               <span>{distance}</span>
-              <span className="mx-1">•</span>
+              <span className="mx-1.5">•</span>
               <span>{time}</span>
             </div>
           )}
         </div>
       </CardContent>
-      <CardFooter className="flex flex-col items-start p-3 bg-white rounded-b-lg">
+      <CardFooter className="flex flex-col items-start p-4 bg-white rounded-b-lg space-y-2">
         <div className="flex justify-between w-full">
           <h3 className="font-medium text-base truncate">{title}</h3>
-          <div className="flex items-center">
+          <div className="flex items-center ml-2">
             <Star className="w-4 h-4 fill-feedoria-red stroke-feedoria-red mr-1" />
-            <span className="text-sm">{rating}</span>
+            <span className="text-sm font-medium">{rating}</span>
           </div>
         </div>
         <p className="text-muted-foreground text-sm">By {chef}</p>

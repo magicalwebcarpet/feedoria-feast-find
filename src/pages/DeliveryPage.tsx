@@ -37,15 +37,15 @@ const DeliveryPage = () => {
 
   return (
     <MainLayout>
-      <div className="py-6 px-4">
-        <div className="flex justify-between items-center mb-6">
+      <div className="py-8 px-4">
+        <div className="flex justify-between items-center mb-8">
           <Logo size="md" />
-          <Button variant="outline" size="icon">
+          <Button variant="outline" size="icon" className="rounded-full">
             <MapPin className="h-5 w-5" />
           </Button>
         </div>
         
-        <div className="mb-6">
+        <div className="mb-8">
           <SearchInput 
             placeholder="Search for meals, chefs..." 
             value={searchQuery}
@@ -54,13 +54,15 @@ const DeliveryPage = () => {
           />
         </div>
         
-        <CategoryFilter
-          categories={categories.meals}
-          activeCategory={activeCategory}
-          onSelectCategory={setActiveCategory}
-        />
+        <div className="mb-6">
+          <CategoryFilter
+            categories={categories.meals}
+            activeCategory={activeCategory}
+            onSelectCategory={setActiveCategory}
+          />
+        </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
           {filteredMeals.map((meal) => (
             <div key={meal.id} className="animate-fadeIn">
               <MealCard
@@ -79,7 +81,7 @@ const DeliveryPage = () => {
         </div>
         
         {filteredMeals.length === 0 && (
-          <div className="text-center py-10">
+          <div className="text-center py-12">
             <p className="text-muted-foreground">No meals found matching your criteria</p>
           </div>
         )}
