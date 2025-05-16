@@ -13,7 +13,8 @@ const Logo = ({ size = "md", customLogo }: LogoProps) => {
     lg: "h-16"
   };
 
-  const logoSrc = customLogo || "/lovable-uploads/b1e16c3d-c93b-41a9-ac18-4021c81f4ef8.png";
+  // Use the newly uploaded logo as default or fallback to the previous one
+  const logoSrc = customLogo || "/lovable-uploads/48620567-47f4-4726-9a4e-b245b9707c47.png";
 
   return (
     <div className={`${sizeClasses[size]} flex items-center`}>
