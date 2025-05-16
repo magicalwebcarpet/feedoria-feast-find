@@ -51,7 +51,11 @@ const DeliveryPage = () => {
     <MainLayout>
       <div className="py-8 px-4">
         <div className="flex justify-between items-center mb-8">
-          <Logo size="md" />
+          <img 
+            src="/lovable-uploads/08cd8233-8534-485e-b67b-a73f440c8f53.png" 
+            alt="Feedoria Logo" 
+            className="h-16 object-contain"
+          />
           <Button variant="outline" size="icon" className="rounded-full">
             <MapPin className="h-5 w-5" />
           </Button>
