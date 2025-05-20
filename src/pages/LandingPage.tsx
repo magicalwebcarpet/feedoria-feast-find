@@ -77,7 +77,7 @@ const LandingPage = () => {
         {/* Hero Section */}
         <div className="py-8 md:py-16">
           <div className="text-center space-y-6">
-            <div className="flex justify-center items-center gap-2 mb-6">
+            <div className="flex justify-center items-center gap-4 mb-6">
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900">
                 Hungry?
               </h1>

@@ -8,15 +8,15 @@ interface LogoProps {
 
 const Logo = ({ size = "md", customLogo }: LogoProps) => {
   const sizeClasses = {
-    sm: "h-10",
-    md: "h-16",
-    lg: "h-24",
-    xl: "h-36",
-    "2xl": "h-48"
+    sm: "h-12",
+    md: "h-20",
+    lg: "h-32",
+    xl: "h-44",
+    "2xl": "h-56"
   };
 
   // Use the newly uploaded logo
-  const logoSrc = customLogo || "/lovable-uploads/ad8b66d6-0190-4a75-abaa-83ea41eb0e29.png";
+  const logoSrc = customLogo || "/lovable-uploads/e0b371d9-4c5b-469c-aeb0-4b22efd24498.png";
 
   return (
     <div className={`${sizeClasses[size]} flex items-center`}>
