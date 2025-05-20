@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import MainLayout from '@/components/layout/MainLayout';
 import Logo from '@/components/shared/Logo';
@@ -50,7 +51,7 @@ const DeliveryPage = () => {
     <MainLayout>
       <div className="py-8 px-4">
         <div className="flex justify-between items-center mb-8">
-          <Logo size="lg" />
+          <Logo size="xl" />
           <Button variant="outline" size="icon" className="rounded-full">
             <MapPin className="h-5 w-5" />
           </Button>
