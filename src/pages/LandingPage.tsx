@@ -6,6 +6,7 @@ import { Search, ChefHat, Calendar, Store, MapPin } from 'lucide-react';
 import MainLayout from '@/components/layout/MainLayout';
 import SearchInput from '@/components/shared/SearchInput';
 import { categories } from '@/lib/data';
+import Logo from '@/components/shared/Logo';
 import { 
   Dialog,
   DialogContent,
@@ -76,8 +77,11 @@ const LandingPage = () => {
         {/* Hero Section */}
         <div className="py-8 md:py-16">
           <div className="text-center space-y-6">
+            <div className="flex justify-center mb-4">
+              <Logo size="lg" />
+            </div>
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900">
-              Hungry? We've got you covered
+              Hungry? Got you covered
             </h1>
             <p className="text-xl text-gray-600">
               Order delicious meals from local chefs near you
