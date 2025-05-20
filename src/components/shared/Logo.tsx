@@ -2,15 +2,16 @@
 import React from 'react';
 
 interface LogoProps {
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xl";
   customLogo?: string;
 }
 
 const Logo = ({ size = "md", customLogo }: LogoProps) => {
   const sizeClasses = {
-    sm: "h-8",
-    md: "h-12",
-    lg: "h-16"
+    sm: "h-10",
+    md: "h-16",
+    lg: "h-24",
+    xl: "h-32"
   };
 
   // Use the newly uploaded logo

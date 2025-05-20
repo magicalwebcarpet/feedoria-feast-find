@@ -77,8 +77,8 @@ const LandingPage = () => {
         {/* Hero Section */}
         <div className="py-8 md:py-16">
           <div className="text-center space-y-6">
-            <div className="flex justify-center mb-4">
-              <Logo size="lg" />
+            <div className="flex justify-center mb-6">
+              <Logo size="xl" />
             </div>
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900">
               Hungry? Got you covered

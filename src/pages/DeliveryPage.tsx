@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import MainLayout from '@/components/layout/MainLayout';
 import Logo from '@/components/shared/Logo';
@@ -57,6 +56,7 @@ const DeliveryPage = () => {
           </Button>
         </div>
         
+        {/* Search Input */}
         <div className="mb-8">
           <SearchInput 
             placeholder="Search for meals, chefs..." 
