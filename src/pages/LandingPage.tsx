@@ -6,7 +6,6 @@ import { Search, ChefHat, Calendar, Store, MapPin } from 'lucide-react';
 import MainLayout from '@/components/layout/MainLayout';
 import SearchInput from '@/components/shared/SearchInput';
 import { categories } from '@/lib/data';
-import Logo from '@/components/shared/Logo';
 import { 
   Dialog,
   DialogContent,
@@ -74,14 +73,30 @@ const LandingPage = () => {
   return (
     <MainLayout>
       <div className="min-h-screen">
-        {/* Hero Section */}
-        <div className="py-8 md:py-16">
-          <div className="text-center space-y-6">
+        {/* Hero Section with Background Image */}
+        <div className="relative py-8 md:py-16 min-h-[80vh] flex items-center">
+          {/* Background Image with Blur */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url('/lovable-uploads/e0b371d9-4c5b-469c-aeb0-4b22efd24498.png')`,
+              filter: 'blur(8px)',
+              transform: 'scale(1.1)'
+            }}
+          />
+          
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-white/70" />
+          
+          {/* Content */}
+          <div className="relative z-10 w-full text-center space-y-6">
             <div className="flex justify-center items-center gap-4 mb-6">
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900">
                 Hungry?
               </h1>
-              <Logo size="2xl" />
+              <span className="text-4xl md:text-6xl font-pacifico text-feedoria-purple">
+                Feedoria
+              </span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900">
               Got you covered
