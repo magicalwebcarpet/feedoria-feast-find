@@ -71,12 +71,12 @@ const LandingPage = () => {
 
   return (
     <MainLayout>
-      <div className="min-h-screen">
+      <div className="min-h-screen -mx-8">
         {/* Hero Section with Background Image */}
         <div className="relative py-8 md:py-16 min-h-[80vh] flex items-center">
-          {/* Background Image with Less Blur */}
+          {/* Background Image - Full Width Border to Border */}
           <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat w-full"
             style={{
               backgroundImage: `url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=1920&h=1080&fit=crop')`,
               filter: 'blur(3px)',
@@ -88,7 +88,7 @@ const LandingPage = () => {
           <div className="absolute inset-0 bg-white/70" />
           
           {/* Content */}
-          <div className="relative z-10 w-full text-center space-y-6">
+          <div className="relative z-10 w-full text-center space-y-6 px-8">
             <div className="flex justify-center items-center gap-4 mb-6">
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900">
                 Hungry?
@@ -187,7 +187,7 @@ const LandingPage = () => {
         </div>
 
         {/* Features Section */}
-        <div className="py-12 bg-gray-50">
+        <div className="py-12 bg-gray-50 px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">How Feedoria Works</h2>
             <p className="text-gray-600">Your favorite meals, just a few clicks away</p>
@@ -221,7 +221,7 @@ const LandingPage = () => {
         </div>
 
         {/* Popular Categories */}
-        <div className="py-12">
+        <div className="py-12 px-8">
           <h2 className="text-3xl font-bold text-center mb-8">Popular Categories</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-4">
             {categories.meals.slice(1, 9).map((category) => (
