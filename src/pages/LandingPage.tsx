@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -75,13 +74,13 @@ const LandingPage = () => {
       <div className="min-h-screen">
         {/* Hero Section with Background Image */}
         <div className="relative py-8 md:py-16 min-h-[80vh] flex items-center">
-          {/* Background Image with Blur */}
+          {/* Background Image with Less Blur */}
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: `url('/lovable-uploads/e0b371d9-4c5b-469c-aeb0-4b22efd24498.png')`,
-              filter: 'blur(8px)',
-              transform: 'scale(1.1)'
+              backgroundImage: `url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=1920&h=1080&fit=crop')`,
+              filter: 'blur(3px)',
+              transform: 'scale(1.05)'
             }}
           />
           
