@@ -16,7 +16,7 @@ const MainLayout = ({ children, fullscreenContent }: MainLayoutProps) => {
         </div>
       )}
       <div className="relative z-10 min-h-[calc(100vh-80px)] bg-gradient-to-b from-white/90 to-white">
-        <div className="container mx-auto max-w-md px-4">
+        <div className="container mx-auto max-w-md px-8">
           {children}
         </div>
       </div>
