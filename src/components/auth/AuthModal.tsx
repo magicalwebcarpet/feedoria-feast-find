@@ -22,6 +22,7 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [fullName, setFullName] = useState('');
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
@@ -44,6 +45,11 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
         const { error } = await supabase.auth.signUp({
           email,
           password,
+          options: {
+            data: {
+              full_name: fullName,
+            }
+          }
         });
         if (error) throw error;
         toast({
@@ -54,6 +60,7 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
       onOpenChange(false);
       setEmail('');
       setPassword('');
+      setFullName('');
     } catch (error: any) {
       toast({
         title: "Error",
@@ -75,6 +82,18 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
+          {!isLogin && (
+            <div className="space-y-2">
+              <Label htmlFor="fullName">Full Name</Label>
+              <Input
+                id="fullName"
+                type="text"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                required={!isLogin}
+              />
+            </div>
+          )}
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input

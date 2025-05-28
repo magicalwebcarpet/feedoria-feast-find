@@ -14,7 +14,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { AuthModal } from './AuthModal';
 
 export const UserMenu = () => {
-  const { user, signOut } = useAuth();
+  const { user, profile, signOut } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
 
   const handleAuthClick = () => {
@@ -61,7 +61,7 @@ export const UserMenu = () => {
                   </svg>
                 </div>
                 <Avatar className="h-6 w-6">
-                  <AvatarImage src={user?.user_metadata?.avatar_url} />
+                  <AvatarImage src={profile?.avatar_url || user?.user_metadata?.avatar_url} />
                   <AvatarFallback>
                     <User className="h-4 w-4" />
                   </AvatarFallback>
@@ -73,7 +73,7 @@ export const UserMenu = () => {
             {user ? (
               <>
                 <DropdownMenuItem className="font-medium">
-                  {user.email}
+                  {profile?.full_name || profile?.email || user.email}
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>Account</DropdownMenuItem>
